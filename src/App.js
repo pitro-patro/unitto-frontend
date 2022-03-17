@@ -1,24 +1,52 @@
-import logo from './logo.svg';
 import './App.css';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { KAKAO_AUTH_URL } from "../src/secretKey";
+import Oauth2RedirectHandler from './components/Oauth2RedirectHandler';
+import { Route, Routes } from 'react-router-dom';
+import Home from './components/Home';
+import About from './components/About';
+
+import kakaoLoginImage from './img/kakao_login_medium_narrow.png'
 
 function App() {
+
+  const [testStr, setTestStr] = useState('');
+
+  function callback(str){
+    setTestStr(str);
+  }
+
+  useEffect(
+    ()=>{
+      axios({
+        url: '/login/react-test',
+        method: 'GET'
+      }).then((res)=>{
+        callback(res.data);
+      })
+    }, []
+  );
+
   return (
     <div className="App">
+
+      <a href={KAKAO_AUTH_URL}>
+        <img alt='kakao_login_button' src = {kakaoLoginImage}/>
+      </a>
+
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/about" element={<About/>}/>
+        <Route path="/login/oauth2/code/kakao" element={<Oauth2RedirectHandler/>}/>
+      </Routes>
+
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        {testStr}
       </header>
+
     </div>
+    
   );
 }
 
