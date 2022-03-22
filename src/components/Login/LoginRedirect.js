@@ -1,7 +1,7 @@
 import React from "react";
 import axios from 'axios';
 
-const Login = () =>{
+const LoginRedirect = () =>{
 
     let code = new URL(window.location.href).searchParams.get("code");
 
@@ -10,7 +10,11 @@ const Login = () =>{
             const result = await axios.get(
                 `/login/oauth2/code/kakao?code=${code}`
             );
-            console.log(result);
+            const jwtToken = result.data.jwtToken;
+            localStorage.setItem('jwtToken', jwtToken);
+
+            document.location.href = "/";
+
         }catch(error){
             console.log("error", error);
         }
@@ -20,11 +24,10 @@ const Login = () =>{
     return(
         <div>
             <h2>
-                로그인 + JWT 토큰
-                {code}
+                로그인 중
             </h2>
         </div>
     );
 };
 
-export default Login;
+export default LoginRedirect;
