@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import { KAKAO_AUTH_URL } from "../../../src/secretKey";
 import kakaoLoginImage from '../../img/kakao_login_medium_narrow.png'
-import { Route, Routes } from 'react-router-dom';
-import LoginRedirect from './LoginRedirect'
 
 const LoginState = () => {
     const [jwtToken, setJwtToken] = useState(
         localStorage.getItem('jwtToken')
     );
+
+    const logoutHandler = () => {
+        localStorage.removeItem('jwtToken');
+        document.location.href= "/";
+    }
     
     if(!jwtToken){
         return(
@@ -24,9 +27,10 @@ const LoginState = () => {
             <div>
                 {jwtToken}
             </div>
-            <h4>
-                로그아웃 버튼 구현
-            </h4>
+
+            <button onClick={logoutHandler}>
+                로그아웃
+            </button>
         </div>
     )
 };
