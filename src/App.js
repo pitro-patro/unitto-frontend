@@ -2,10 +2,10 @@ import './App.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { KAKAO_AUTH_URL } from "../src/secretKey";
-import Oauth2RedirectHandler from './components/Oauth2RedirectHandler';
 import { Route, Routes } from 'react-router-dom';
 import Home from './components/Home';
 import About from './components/About';
+import Login from './components/Login';
 
 import kakaoLoginImage from './img/kakao_login_medium_narrow.png'
 
@@ -38,7 +38,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/about" element={<About/>}/>
-        <Route path="/login/oauth2/code/kakao" element={<Oauth2RedirectHandler/>}/>
+        <Route path="/login/code/kakao" element={<Login/>}/>
       </Routes>
 
       <header className="App-header">
