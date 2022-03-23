@@ -1,13 +1,11 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { KAKAO_AUTH_URL } from "../src/secretKey";
 import { Route, Routes } from 'react-router-dom';
 import Home from './components/Home';
 import About from './components/About';
 import LoginRedirect from './components/Login/LoginRedirect';
 
-import kakaoLoginImage from './img/kakao_login_medium_narrow.png'
 import LoginState from './components/Login/LoginState';
 
 function App() {
