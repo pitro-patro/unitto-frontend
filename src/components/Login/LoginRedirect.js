@@ -1,5 +1,6 @@
 import React from "react";
 import axios from 'axios';
+import request from "../../request";
 
 const LoginRedirect = () =>{
 
@@ -7,10 +8,7 @@ const LoginRedirect = () =>{
 
     const kakao = async () => {
         try{
-            const result = await axios.get(
-                `/login/oauth2/code/kakao?code=${code}`
-            );
-            const jwtToken = result.data.jwtToken;
+            const jwtToken = await request.getJwtToken(code);
             localStorage.setItem('jwtToken', jwtToken);
 
             document.location.href = "/";
