@@ -1,12 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import request from "../request";
 
 const Number = () =>{
 
+    const [uniqueNumber, setUniqueNumber] = useState([]);
+
     const getNumber = async () =>{
-        const number = await request.getLotteryUniqueNumber();
-        console.log(number);
+        // TODO : 번호 include, exclude 기능 구현 필요
+        //
+        var includeExcludeNumber = {
+            "includeNumbers" : [1,2,3,4],
+            "excludeNumbers" : [28,29,30,31]
+        };
+        //
+
+        const number = await request.getLotteryUniqueNumber(includeExcludeNumber);
+        setUniqueNumber(number);
     };
+
+    const NumberList = (props) =>{
+        const numbers = props.numbers;
+        
+        const uniqueNumberList = numbers.map(number =>
+            <li key={number}>{number}</li>
+        );
+
+        return (
+            <ul>{uniqueNumberList}</ul>
+        )
+    }
 
     return(
         <div>
@@ -16,6 +38,10 @@ const Number = () =>{
             <button onClick={getNumber}>
                 번호 발급
             </button>
+            <div>
+                <h3>UniqueNumber</h3>
+                <NumberList numbers={uniqueNumber}/>
+            </div>
         </div>
     );
 };

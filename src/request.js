@@ -44,10 +44,27 @@ export async function getUserData(){
     return userData.data;
 }
 
-//export async function getLotteryUniqueNumber()
+export async function getLotteryUniqueNumber(includeExcludeNumber){
+    var responseData;
+    
+    try{
+        responseData = await axi.post(
+            "/lottery/unique-numbers",
+            includeExcludeNumber,
+            {headers: jwtTokenHeader(getLocalStorageJwtToken())}
+        );
+    }catch(error){
+        console.log("error", error.response.data.message);
+    }
+
+    const uniqueNumber = responseData.data.uniqueLotteryNumbers;
+    
+    return uniqueNumber;
+}
 
 export default {
     getLocalStorageJwtToken,
     getJwtToken,
     getUserData,
+    getLotteryUniqueNumber
 }
