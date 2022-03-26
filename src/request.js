@@ -62,9 +62,31 @@ export async function getLotteryUniqueNumber(includeExcludeNumber){
     return uniqueNumber;
 }
 
+export async function confirmLotteryUniqueNumber(uniqueNumber, isConfirmed){
+    var responseData;
+
+    try{
+        responseData = await axi.post(
+            "/lottery/unique-numbers-confirm",
+            {
+                "lotteryNumbers": uniqueNumber,
+                "confirm": isConfirmed
+            },
+            {headers: jwtTokenHeader(getLocalStorageJwtToken())}
+        );
+    }catch(error){
+        console.log("error", error.response.data.message);
+    }
+
+    const confirmedUniqueNumber = responseData.data.lotteryNumbers;
+
+    return confirmedUniqueNumber;
+}
+
 export default {
     getLocalStorageJwtToken,
     getJwtToken,
     getUserData,
-    getLotteryUniqueNumber
+    getLotteryUniqueNumber,
+    confirmLotteryUniqueNumber,
 }
