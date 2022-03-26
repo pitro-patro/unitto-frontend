@@ -44,7 +44,7 @@ export async function getUserData(){
     return userData.data;
 }
 
-export async function getLotteryUniqueNumber(includeExcludeNumber){
+export async function getLotteryUniqueNumberAndExpireTime(includeExcludeNumber){
     var responseData;
     
     try{
@@ -56,10 +56,8 @@ export async function getLotteryUniqueNumber(includeExcludeNumber){
     }catch(error){
         console.log("error", error.response.data.message);
     }
-
-    const uniqueNumber = responseData.data.uniqueLotteryNumbers;
     
-    return uniqueNumber;
+    return responseData.data;
 }
 
 export async function confirmLotteryUniqueNumber(uniqueNumber, isConfirmed){
@@ -87,6 +85,6 @@ export default {
     getLocalStorageJwtToken,
     getJwtToken,
     getUserData,
-    getLotteryUniqueNumber,
+    getLotteryUniqueNumberAndExpireTime,
     confirmLotteryUniqueNumber,
 }
