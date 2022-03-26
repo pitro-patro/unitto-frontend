@@ -1,13 +1,13 @@
 import React from "react";
 
-const About = () =>{
+const Number = () =>{
     return(
         <div>
             <h2>
-                ABOUT 씨발
+                번호 발급
             </h2>
         </div>
     );
 };
 
-export default About;
+export default Number;

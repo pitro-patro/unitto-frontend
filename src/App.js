@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Route, Routes } from 'react-router-dom';
 import Home from './components/Home';
-import About from './components/About';
+import Number from './components/Number';
+import Navigation from './components/Navigation';
 import LoginRedirect from './components/Login/LoginRedirect';
 
 import LoginState from './components/Login/LoginState';
@@ -32,10 +33,11 @@ function App() {
     <div className="App">
 
       <LoginState/>
+      <Navigation/>
 
       <Routes>
         <Route path="/" element={<Home/>}/>
-        <Route path="/about" element={<About/>}/>
+        <Route path="/number" element={<Number/>}/>
         <Route path="/login/code/kakao" element={<LoginRedirect/>}/>
       </Routes>
 
