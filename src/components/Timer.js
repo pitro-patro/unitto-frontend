@@ -12,6 +12,9 @@ const Timer = (props) =>{
 
             if(seconds === 0){
                 if(minutes === 0){
+                    // 타이머 끝날시 처리
+                    props.timeout();
+                    alert('발급 가능 시간이 만료되었습니다!');
                     clearInterval(countdown);
                 }else{
                     setMinutes(minutes-1);
