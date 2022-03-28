@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import request from "../request";
+import request from "../../request";
 import Timer from "./Timer";
 
 const Number = () =>{

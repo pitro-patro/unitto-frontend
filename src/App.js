@@ -3,16 +3,16 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Route, Routes } from 'react-router-dom';
 import Home from './components/Home';
-import Number from './components/Number';
+import Number from './components/Number/Number';
 import Navigation from './components/Navigation';
 import LoginRedirect from './components/Login/LoginRedirect';
 
 import LoginState from './components/Login/LoginState';
+import MyNumber from './components/Number/MyNumber';
 
 function App() {
 
   const [testStr, setTestStr] = useState('');
-  const [jwtToken, setJwtToken] = useState('');
 
   function callback(str){
     setTestStr(str);
@@ -38,6 +38,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/number" element={<Number/>}/>
+        <Route path="/my/number" element={<MyNumber/>}/>
         <Route path="/login/code/kakao" element={<LoginRedirect/>}/>
       </Routes>
 

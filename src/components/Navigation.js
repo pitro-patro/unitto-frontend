@@ -7,6 +7,7 @@ const Navigation = () =>{
         <div>
             <ul>
                 <li><Link to={"/"}>홈</Link></li>
+                <li><Link to={"/my/number"}>내 번호</Link></li>
                 <li><Link to={"/number"}>번호생성</Link></li>
             </ul>
         </div>

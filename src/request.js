@@ -1,5 +1,5 @@
 import axios from "axios";
-
+// TODO : JWT 토큰 만료 처리 필요
 const axi = axios.create({baseURL: "http://localhost:3000/"});
 
 export function getLocalStorageJwtToken(){
@@ -30,7 +30,6 @@ export async function getJwtToken(code){
 }
 
 export async function getUserData(){
-    // TODO : try catch문 어디에 위치해야될까
     var userData;
     try{
         userData = await axi.get(
@@ -81,10 +80,26 @@ export async function confirmLotteryUniqueNumber(uniqueNumber, isConfirmed){
     return confirmedUniqueNumber;
 }
 
+export async function getUserNumberData(){
+    var responseData;
+
+    try{
+        responseData = await axi.get(
+            "/user/my-number-info",
+            {headers: jwtTokenHeader(getLocalStorageJwtToken())}
+        );
+    }catch(error){
+        console.log("error", error.response.data.message);
+    }
+
+    return responseData.data;
+}
+
 export default {
     getLocalStorageJwtToken,
     getJwtToken,
     getUserData,
     getLotteryUniqueNumberAndExpireTime,
     confirmLotteryUniqueNumber,
+    getUserNumberData
 }
