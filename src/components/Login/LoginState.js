@@ -5,7 +5,8 @@ import request from "../../request";
 
 const LoginState = () => {
     const [jwtToken, setJwtToken] = useState(
-        localStorage.getItem('jwtToken')
+        request.getLocalStorageJwtToken()
+        //localStorage.getItem('jwtToken')
     );
     const [userData, setUserData] = useState('');
 
@@ -21,8 +22,8 @@ const LoginState = () => {
             return;
         }
 
-        const getUserData = async (jwtToken) => {
-            const userData = await request.getUserData(jwtToken);
+        const getUserData = async () => {
+            const userData = await request.getUserData();
             setUserData(userData);
         };
         getUserData(jwtToken);

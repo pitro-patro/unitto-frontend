@@ -6,15 +6,10 @@ const LoginRedirect = () =>{
     let code = new URL(window.location.href).searchParams.get("code");
 
     const kakao = async () => {
-        try{
-            const jwtToken = await request.getJwtToken(code);
-            localStorage.setItem('jwtToken', jwtToken);
+        const jwtToken = await request.getJwtToken(code);
+        localStorage.setItem('jwtToken', jwtToken);
 
-            document.location.href = "/";
-
-        }catch(error){
-            console.log("error", error);
-        }
+        document.location.href = "/";
     }
     kakao();
 
