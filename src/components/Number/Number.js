@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import { MAX_EXCLUDE_NUMBER, MAX_INCLUDE_NUMBER } from "../../localValue";
 import request from "../../request";
+import NumberSelect from "./NumberSelect";
 import Timer from "./Timer";
 
 const Number = () =>{
@@ -10,17 +12,36 @@ const Number = () =>{
     const [expireTime, setExpireTime] = useState('');
     
     const getNumber = async () =>{
-        setConfirmedUniqueNumber([]);
         // TODO : 번호 include, exclude 기능 구현 필요
-        //
+
         var includeExcludeNumber = {
-            "includeNumbers" : [1,2,3,4],
-            "excludeNumbers" : [28,29,30,31]
+            "includeNumbers" : [],
+            "excludeNumbers" : []
         };
-        //
+
+        for(let i=1; i<=45; i++){
+            const classList = document.getElementById(`number${i}`).classList;
+            if(classList.contains("includeNumber")){
+                includeExcludeNumber.includeNumbers.push(i);
+            }
+            else if(classList.contains("excludeNumber")){
+                includeExcludeNumber.excludeNumbers.push(i);
+            }
+        }
+
+        if(includeExcludeNumber.includeNumbers.length > MAX_INCLUDE_NUMBER){
+            alert(`포함 번호는 최대 ${MAX_INCLUDE_NUMBER}개 까지 선택 가능합니다!`);
+            return;
+        }else if(includeExcludeNumber.excludeNumbers.length > MAX_EXCLUDE_NUMBER){
+            alert(`제외 번호는 최대 ${MAX_EXCLUDE_NUMBER}개 까지 선택 가능합니다!`);
+            return;
+        }
+        
+        
 
         const numberAndExpireTime = await request.getLotteryUniqueNumberAndExpireTime(includeExcludeNumber);
  
+        setConfirmedUniqueNumber([]);
         setUniqueNumber(numberAndExpireTime.uniqueLotteryNumbers);
         setExpireTime(numberAndExpireTime.expireTime);
     };
@@ -69,7 +90,7 @@ const Number = () =>{
 
         if(numbers.length === 0){
             return(
-                <div>번호를 생성해주세요</div>
+                <div>[추가할 번호], [제외할 번호] 선택 후 번호를 생성해주세요</div>
             )
         }
         
@@ -98,6 +119,7 @@ const Number = () =>{
             </button>
             <div>
                 <h3>UniqueNumber</h3>
+                <NumberSelect/>
                 <ConfirmedNumberList confirmedNumbers={confirmedUniqueNumber}/>
                 <NumberList numbers={uniqueNumber} expireTime={expireTime}/>
             </div>

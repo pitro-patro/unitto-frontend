@@ -1,0 +1,21 @@
+.lotteryNumberContainer{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.lotteryNumber{
+    float:left;
+    margin: 8px;
+    width: 40px;
+    padding: 2px 0px 2px 0;
+    border: solid;
+    border-width: 2.5px;
+}
+
+.includeNumber{
+    background-color: greenyellow;
+}
+
+.excludeNumber{
+    background-color: palevioletred;
+}
