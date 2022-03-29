@@ -1,4 +1,5 @@
 import axios from "axios";
+import { KAKAO_AUTH_URL } from "./secretKey";
 // TODO : JWT 토큰 만료 처리 필요
 const axi = axios.create({baseURL: "http://localhost:3000/"});
 
@@ -12,6 +13,14 @@ function jwtTokenHeader(jwtToken){
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${jwtToken}`
       };
+}
+
+function jwtTokenExceptionHandler(error){
+    var message = error.response.data.message;
+    if(message === "Token is Expired" || message === "Token is Invalid" || message === "Token is NULL"){
+        alert("로그인 후 이용해 주세요.");
+        document.location.href = KAKAO_AUTH_URL;
+    }
 }
 
 export async function getJwtToken(code){
@@ -38,6 +47,7 @@ export async function getUserData(){
             );
     }catch(error){
         console.log("error", error.response.data.message);
+        jwtTokenExceptionHandler(error);
     }
 
     return userData.data;
@@ -54,6 +64,7 @@ export async function getLotteryUniqueNumberAndExpireTime(includeExcludeNumber){
         );
     }catch(error){
         console.log("error", error.response.data.message);
+        jwtTokenExceptionHandler(error)
     }
     
     return responseData.data;
@@ -73,6 +84,7 @@ export async function confirmLotteryUniqueNumber(uniqueNumber, isConfirmed){
         );
     }catch(error){
         console.log("error", error.response.data.message);
+        jwtTokenExceptionHandler(error);
     }
 
     const confirmedUniqueNumber = responseData.data.lotteryNumbers;
@@ -90,6 +102,7 @@ export async function getUserNumberData(){
         );
     }catch(error){
         console.log("error", error.response.data.message);
+        jwtTokenExceptionHandler(error);
     }
 
     return responseData.data;
