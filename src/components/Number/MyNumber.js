@@ -12,7 +12,6 @@ const MyNumber = () =>{
         }
 
         getUserData();
-        console.log(userNumberData);
     }, []);
 
     const DataList = (props) =>{

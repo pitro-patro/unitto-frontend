@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import '../../styles/NumberSelect.css';
 
-const NumberSelect = () =>{
+const NumberSelect = (props) =>{
+
+    useEffect(() =>{
+        console.log("HI");
+        const includeExcludeNumber = props.includeExcludeNumber;
+        
+        for(let number of includeExcludeNumber.includeNumbers){
+            const includeNumberClassList = document.getElementById(`number${number}`).classList;
+            includeNumberClassList.add("includeNumber");
+        }
+        for(let number of includeExcludeNumber.excludeNumbers){
+            const excludeNumberClassList = document.getElementById(`number${number}`).classList;
+            excludeNumberClassList.add("excludeNumber");
+        }
+
+    },[props]);
 
     const numberClicked = (id)=>{
         const element = document.getElementById(`number${id}`);

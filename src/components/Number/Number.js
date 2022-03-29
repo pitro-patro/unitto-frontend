@@ -10,11 +10,16 @@ const Number = () =>{
 
     const [uniqueNumber, setUniqueNumber] = useState([]);
     const [expireTime, setExpireTime] = useState('');
+
+    const [includeExcludeNumber, setIncludeExcludeNumber] = useState({
+        "includeNumbers" : [],
+        "excludeNumbers" : []  
+    });
     
     const getNumber = async () =>{
         // TODO : 번호 include, exclude 기능 구현 필요
 
-        var includeExcludeNumber = {
+        let tempIncludeExcludeNumber = {
             "includeNumbers" : [],
             "excludeNumbers" : []
         };
@@ -22,25 +27,28 @@ const Number = () =>{
         for(let i=1; i<=45; i++){
             const classList = document.getElementById(`number${i}`).classList;
             if(classList.contains("includeNumber")){
-                includeExcludeNumber.includeNumbers.push(i);
+                tempIncludeExcludeNumber.includeNumbers.push(i);
             }
             else if(classList.contains("excludeNumber")){
-                includeExcludeNumber.excludeNumbers.push(i);
+                tempIncludeExcludeNumber.excludeNumbers.push(i);
             }
         }
 
-        if(includeExcludeNumber.includeNumbers.length > MAX_INCLUDE_NUMBER){
+        if(tempIncludeExcludeNumber.includeNumbers.length > MAX_INCLUDE_NUMBER){
             alert(`포함 번호는 최대 ${MAX_INCLUDE_NUMBER}개 까지 선택 가능합니다!`);
             return;
-        }else if(includeExcludeNumber.excludeNumbers.length > MAX_EXCLUDE_NUMBER){
+        }else if(tempIncludeExcludeNumber.excludeNumbers.length > MAX_EXCLUDE_NUMBER){
             alert(`제외 번호는 최대 ${MAX_EXCLUDE_NUMBER}개 까지 선택 가능합니다!`);
             return;
         }
         
         
 
-        const numberAndExpireTime = await request.getLotteryUniqueNumberAndExpireTime(includeExcludeNumber);
+        const numberAndExpireTime = await request.getLotteryUniqueNumberAndExpireTime(tempIncludeExcludeNumber);
  
+        // 포함 제외 번호 저장
+        setIncludeExcludeNumber(tempIncludeExcludeNumber);
+  
         setConfirmedUniqueNumber([]);
         setUniqueNumber(numberAndExpireTime.uniqueLotteryNumbers);
         setExpireTime(numberAndExpireTime.expireTime);
@@ -119,7 +127,7 @@ const Number = () =>{
             </button>
             <div>
                 <h3>UniqueNumber</h3>
-                <NumberSelect/>
+                <NumberSelect includeExcludeNumber={includeExcludeNumber}/>
                 <ConfirmedNumberList confirmedNumbers={confirmedUniqueNumber}/>
                 <NumberList numbers={uniqueNumber} expireTime={expireTime}/>
             </div>
