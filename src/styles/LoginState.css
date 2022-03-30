@@ -1,23 +1,25 @@
-.navigationContainer{
-    background-color: #dbdbdb;
-    display: inline-block;
+.loginStateContainer{
+    float: right;
 }
 
-.navigation_ul{
-    float: left;
+.userdata_ul{
     flex-direction: row;
-    width: 100%;
     display: flex;
     margin: 0;
     padding: 0px;
     list-style-type: none;
 }
 
-.navigation_li{
+.userdata_li{
     border: solid #bbbbbb;
+    border-width: 1px;
     background-color: #cdcdcd;
-    height: 30px;
     border-radius: 5px;
-    margin: 10px;
+    margin: 5px;
+    padding: 1px;
     cursor: pointer;
+}
+
+.buttonContainer{
+    float: right;
 }

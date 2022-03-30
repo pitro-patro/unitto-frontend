@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+.headerContainer{
+  border: solid #c9c9c9;
+  background-color: #dbdbdb;
+}
+
+.loginState{
+  float: right;
+}
