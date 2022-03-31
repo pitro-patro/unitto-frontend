@@ -15,6 +15,14 @@ const MyNumber = () =>{
         getUserData();
     }, []);
 
+    const getStringDate = (date) =>{
+        let sliceDate = date.split("T");
+        let YMD = sliceDate[0].split("-");
+        let Time = sliceDate[1].split(":");
+
+        return `${YMD[0]}/${YMD[1]}/${YMD[2]} ${Time[0]}시 ${Time[1]}분`;
+    }
+
     const DataList = (props) =>{
         const numberData = props.userNumberData;
 
@@ -31,7 +39,7 @@ const MyNumber = () =>{
         const dataListRow = numberData.map(data =>
             <tr className="myNumberRow">
                 <td>{data.lotteryNumber}</td>
-                <td>{data.confirmDate}</td>
+                <td>{getStringDate(data.confirmDate)}</td>
             </tr>
         );
 
