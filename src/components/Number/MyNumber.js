@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import request from "../../request";
+import "../../styles/MyNumber.css"
 
 const MyNumber = () =>{
 
@@ -19,27 +20,42 @@ const MyNumber = () =>{
 
         if(numberData.length === 0){
             return(
-                <div>발급받은 번호가 없습니다</div>
+                <div>
+                    <table className="myNumberTable">
+                        <caption><h3>구매한 번호가 없습니다</h3></caption>
+                    </table>
+                </div>
             )
         }
 
-        const dataList = numberData.map(data =>
-            <li key={data.id}>
-                <div>{data.lotteryNumber}</div>
-                <div>{data.confirmDate}</div>
-            </li>
+        const dataListRow = numberData.map(data =>
+            <tr className="myNumberRow">
+                <td>{data.lotteryNumber}</td>
+                <td>{data.confirmDate}</td>
+            </tr>
         );
 
         return(
             <div>
-                <ul>{dataList}</ul>
+                <table className="myNumberTable">
+                    <caption><h2>내가 구매한 번호</h2></caption>
+                    <thead>
+                        <tr>
+                            <th className="myNumberTh">번호</th>
+                            <th className="myNumberTh">발급 시간</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {dataListRow}
+                    </tbody>
+                </table>
             </div>
         )
     }
 
     return(
         <div>
-            <h2>내가 구매한 번호</h2>
             <div>
                 <DataList userNumberData={userNumberData}/>
             </div>

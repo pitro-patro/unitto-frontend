@@ -46,15 +46,16 @@ const LoginState = () => {
                 <li className="userdata_li">{userData.name}님</li>
                 <li className="userdata_li"> / </li>
                 <li className="userdata_li">{userData.email}</li>
+                <li className="userdata_li">
+                    <button className="buttonContainer" onClick={logoutHandler}>
+                    로그아웃
+                    </button>
+                </li>
                 {/* {
                     Object.keys(userData).map((key, index)=>
                         <li key={index}>{key} : {userData[key]}</li>)
                 } */}
             </ul>
-
-            <button className="buttonContainer" onClick={logoutHandler}>
-                로그아웃
-            </button>
         </div>
     )
 };
