@@ -30,10 +30,13 @@ function App() {
   );
 
   return (
-    <div className="App">
-
-      <LoginState/>
-      <Navigation/>
+    <div>
+      <h1>UNITTO</h1>
+      <div className='headerContainer'>
+        <LoginState/>
+        <Navigation/>
+      </div>
+      
 
       <Routes>
         <Route path="/" element={<Home/>}/>

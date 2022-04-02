@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import request from "../../request";
+import "../../styles/MyNumber.css"
 
 const MyNumber = () =>{
 
@@ -14,32 +15,65 @@ const MyNumber = () =>{
         getUserData();
     }, []);
 
+    const getStringDate = (date) =>{
+        let sliceDate = date.split("T");
+        let YMD = sliceDate[0].split("-");
+        let Time = sliceDate[1].split(":");
+
+        return `${YMD[0]}/${YMD[1]}/${YMD[2]} ${Time[0]}시 ${Time[1]}분`;
+    }
+
+    const getLotteryNumberList = (lotteryNumber) =>{
+        let numbers = lotteryNumber.split("-");
+
+        return(
+            numbers.map(number =>
+                <li className="myNumberList" key={number}>{number}</li>
+                )
+        )
+    }
+
     const DataList = (props) =>{
         const numberData = props.userNumberData;
 
         if(numberData.length === 0){
             return(
-                <div>발급받은 번호가 없습니다</div>
+                <div>
+                    <table className="myNumberTable">
+                        <caption><h3>구매한 번호가 없습니다</h3></caption>
+                    </table>
+                </div>
             )
         }
 
-        const dataList = numberData.map(data =>
-            <li key={data.id}>
-                <div>{data.lotteryNumber}</div>
-                <div>{data.confirmDate}</div>
-            </li>
+        const dataListRow = numberData.map(data =>
+            <tr className="myNumberRow">
+                <td>{getLotteryNumberList(data.lotteryNumber)}</td>
+                <td>{getStringDate(data.confirmDate)}</td>
+            </tr>
         );
 
         return(
             <div>
-                <ul>{dataList}</ul>
+                <table className="myNumberTable">
+                    <caption><h2>내가 구매한 번호</h2></caption>
+                    <thead>
+                        <tr>
+                            <th className="myNumberTh">번호</th>
+                            <th className="myNumberTh">발급 시간</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {dataListRow}
+                    </tbody>
+                </table>
             </div>
         )
     }
 
     return(
         <div>
-            <h2>내가 구매한 번호</h2>
             <div>
                 <DataList userNumberData={userNumberData}/>
             </div>

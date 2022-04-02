@@ -3,6 +3,7 @@ import { MAX_EXCLUDE_NUMBER, MAX_INCLUDE_NUMBER } from "../../localValue";
 import request from "../../request";
 import NumberSelect from "./NumberSelect";
 import Timer from "./Timer";
+import "../../styles/Number.css"
 
 const Number = () =>{
 
@@ -79,13 +80,12 @@ const Number = () =>{
         }
 
         const confirmedUniqueNumberList = confirmedNumbers.map(number =>
-            <li key={number}>{number}</li>
+            <li className="numberList" key={number}>{number}</li>
         );
 
         return (
             <div>
-                <b>등록되었습니다!!!
-                </b>
+                <h1>등록된 번호</h1>
                 <ul>{confirmedUniqueNumberList}</ul>
             </div>
             
@@ -98,35 +98,38 @@ const Number = () =>{
 
         if(numbers.length === 0){
             return(
-                <div>[추가할 번호], [제외할 번호] 선택 후 번호를 생성해주세요</div>
+                <div className="textContainer">
+                    <div className="includeNumber textBox">추가 번호</div>
+                    <div className="excludeNumber textBox">제외 번호</div>
+                    선택 후 번호를 생성해주세요
+                </div>
             )
         }
         
         const uniqueNumberList = numbers.map(number =>
-            <li key={number}>{number}</li>
+            <li className="numberList" key={number}>{number}</li>
         );
 
         return (
             <div>
                 <ul>{uniqueNumberList}</ul>
                 <Timer expireTimeInSeconds={expireTime} timeout={timeout}/>
-                <button onClick={()=>confirmNumber(true)}>사용</button>
-                <button onClick={()=>confirmNumber(false)}>취소</button>
+                <button className="defaultButton confirmButton" onClick={()=>confirmNumber(true)}>사용</button>
+                <button className="defaultButton confirmButton" onClick={()=>confirmNumber(false)}>취소</button>
             </div>
             
         )
     }
 
     return(
-        <div>
+        <div className="numberContainer">
             <h2>
                 번호 생성기
             </h2>
-            <button onClick={getNumber}>
+            <button className="defaultButton" onClick={getNumber}>
                 번호 발급
             </button>
             <div>
-                <h3>UniqueNumber</h3>
                 <NumberSelect includeExcludeNumber={includeExcludeNumber}/>
                 <ConfirmedNumberList confirmedNumbers={confirmedUniqueNumber}/>
                 <NumberList numbers={uniqueNumber} expireTime={expireTime}/>

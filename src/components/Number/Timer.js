@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "../../styles/Timer.css"
 
 const Timer = (props) =>{
     const [minutes, setMinutes] = useState(parseInt(props.expireTimeInSeconds/60));
@@ -27,10 +28,13 @@ const Timer = (props) =>{
     }, [minutes, seconds]);
 
     return(
-        <div>
-            <b>남은 시간</b>
+        <div class="timerContainer">
+            <h1>남은 시간</h1>
             <div>
-                {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
+                <ul>
+                    <li className="timerLi"><span className="timerSpan">{minutes}</span>MINUTES</li>
+                    <li className="timerLi"><span className="timerSpan">{seconds < 10 ? `0${seconds}` : seconds}</span>SECONDS</li>
+                </ul>
             </div>
         </div>
     )

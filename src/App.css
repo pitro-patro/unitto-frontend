@@ -36,3 +36,24 @@
     transform: rotate(360deg);
   }
 }
+
+.headerContainer{
+  border: solid #c9c9c9;
+  background-color: #dbdbdb;
+}
+
+.loginState{
+  float: right;
+}
+
+h1{
+  font-weight: normal;
+  letter-spacing: .125rem;
+  padding:0px;
+  margin:0px;
+}
+
+ul{
+  padding: 0px;
+  margin: 0px;
+}
