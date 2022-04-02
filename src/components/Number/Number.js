@@ -80,13 +80,12 @@ const Number = () =>{
         }
 
         const confirmedUniqueNumberList = confirmedNumbers.map(number =>
-            <li key={number}>{number}</li>
+            <li className="numberList" key={number}>{number}</li>
         );
 
         return (
             <div>
-                <b>등록되었습니다!!!
-                </b>
+                <h1>등록된 번호</h1>
                 <ul>{confirmedUniqueNumberList}</ul>
             </div>
             
