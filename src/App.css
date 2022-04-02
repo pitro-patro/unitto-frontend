@@ -45,3 +45,15 @@
 .loginState{
   float: right;
 }
+
+h1{
+  font-weight: normal;
+  letter-spacing: .125rem;
+  padding:0px;
+  margin:0px;
+}
+
+ul{
+  padding: 0px;
+  margin: 0px;
+}

@@ -1,0 +1,16 @@
+.timerContainer {
+    color: #333;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.timerLi{
+    display: inline-block;
+    list-style-type: none;
+    padding: 1em;
+}
+
+.timerSpan{
+    display: block;
+    font-size: 25px;        
+}

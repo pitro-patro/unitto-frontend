@@ -1,6 +1,8 @@
 .lotteryNumberContainer{
+    text-align: center;
     display: flex;
     flex-wrap: wrap;
+    padding: 0px 20% 0px 20%;
 }
 
 .lotteryNumber{
@@ -18,4 +20,15 @@
 
 .excludeNumber{
     background-color: palevioletred;
+}
+
+.textContainer{
+    flex-direction: row;
+}
+
+.textBox{
+    display: inline-block;
+    border: solid;
+    border-width: 2.5px;
+    margin-right: 3px;
 }
