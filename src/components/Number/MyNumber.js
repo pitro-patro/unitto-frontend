@@ -23,6 +23,16 @@ const MyNumber = () =>{
         return `${YMD[0]}/${YMD[1]}/${YMD[2]} ${Time[0]}시 ${Time[1]}분`;
     }
 
+    const getLotteryNumberList = (lotteryNumber) =>{
+        let numbers = lotteryNumber.split("-");
+
+        return(
+            numbers.map(number =>
+                <li className="myNumberList" key={number}>{number}</li>
+                )
+        )
+    }
+
     const DataList = (props) =>{
         const numberData = props.userNumberData;
 
@@ -38,7 +48,7 @@ const MyNumber = () =>{
 
         const dataListRow = numberData.map(data =>
             <tr className="myNumberRow">
-                <td>{data.lotteryNumber}</td>
+                <td>{getLotteryNumberList(data.lotteryNumber)}</td>
                 <td>{getStringDate(data.confirmDate)}</td>
             </tr>
         );
