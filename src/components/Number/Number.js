@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { MAX_EXCLUDE_NUMBER, MAX_INCLUDE_NUMBER } from "../../localValue";
+import { MAX_EXCLUDE_NUMBER, MAX_INCLUDE_NUMBER, CURRENT_LOTTERY_ROUND } from "../../localValue";
 import request from "../../request";
 import NumberSelect from "./NumberSelect";
 import Timer from "./Timer";
@@ -124,7 +124,7 @@ const Number = () =>{
     return(
         <div className="numberContainer">
             <h2>
-                번호 생성기
+                {`${CURRENT_LOTTERY_ROUND}회차 로또 번호 생성기`}
             </h2>
             <button className="defaultButton" onClick={getNumber}>
                 번호 발급
