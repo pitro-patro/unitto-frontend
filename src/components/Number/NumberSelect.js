@@ -4,7 +4,6 @@ import '../../styles/NumberSelect.css';
 const NumberSelect = (props) =>{
 
     useEffect(() =>{
-        console.log("HI");
         const includeExcludeNumber = props.includeExcludeNumber;
         
         for(let number of includeExcludeNumber.includeNumbers){

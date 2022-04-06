@@ -40,7 +40,7 @@ const MyNumber = () =>{
             return(
                 <div>
                     <table className="myNumberTable">
-                        <caption><h3>구매한 번호가 없습니다</h3></caption>
+                        <caption><h2>구매한 번호가 없습니다</h2></caption>
                     </table>
                 </div>
             )
@@ -48,6 +48,7 @@ const MyNumber = () =>{
 
         const dataListRow = numberData.map(data =>
             <tr className="myNumberRow">
+                <td>{data.lotteryRound}</td>
                 <td>{getLotteryNumberList(data.lotteryNumber)}</td>
                 <td>{getStringDate(data.confirmDate)}</td>
             </tr>
@@ -59,6 +60,7 @@ const MyNumber = () =>{
                     <caption><h2>내가 구매한 번호</h2></caption>
                     <thead>
                         <tr>
+                            <th className="myNumberTh">회차</th>
                             <th className="myNumberTh">번호</th>
                             <th className="myNumberTh">발급 시간</th>
                         </tr>
