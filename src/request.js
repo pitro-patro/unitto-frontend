@@ -109,11 +109,24 @@ export async function getUserNumberData(){
     return responseData.data;
 }
 
+export async function getLotteryRound(){
+    var responseData;
+
+    try{
+        responseData = await axi.get("/lottery/lottery-round");
+    }catch(error){
+        console.log("error", error);
+    }
+
+    return responseData.data;
+}
+
 export default {
     getLocalStorageJwtToken,
     getJwtToken,
     getUserData,
     getLotteryUniqueNumberAndExpireTime,
     confirmLotteryUniqueNumber,
-    getUserNumberData
+    getUserNumberData,
+    getLotteryRound
 }

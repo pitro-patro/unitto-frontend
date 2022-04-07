@@ -46,8 +46,8 @@ const MyNumber = () =>{
             )
         }
 
-        const dataListRow = numberData.map(data =>
-            <tr className="myNumberRow">
+        const dataListRow = numberData.map((data, index) =>
+            <tr className="myNumberRow" key={index}>
                 <td>{data.lotteryRound}</td>
                 <td>{getLotteryNumberList(data.lotteryNumber)}</td>
                 <td>{getStringDate(data.confirmDate)}</td>
