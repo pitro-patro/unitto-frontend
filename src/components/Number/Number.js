@@ -3,6 +3,7 @@ import { MAX_EXCLUDE_NUMBER, MAX_INCLUDE_NUMBER } from "../../localValue";
 import request from "../../request";
 import NumberSelect from "./NumberSelect";
 import Timer from "./Timer";
+import LotteryRoundNumber from "./LotteryRoundNumber";
 import "../../styles/Number.css"
 
 const Number = () =>{
@@ -133,6 +134,9 @@ const Number = () =>{
 
     return(
         <div className="numberContainer">
+            <div>
+                <LotteryRoundNumber currentRound={lotteryRound}/>
+            </div>
             <h2>
                 {`${lotteryRound}회차 로또 번호 생성기`}
             </h2>
