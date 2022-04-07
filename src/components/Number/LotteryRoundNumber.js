@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import { numberColor } from "../../localValue";
 import request from "../../request";
 import "../../styles/LotteryRoundNumber.css";
 
@@ -48,8 +49,12 @@ const LotteryRoundNumber = (props) =>{
             )
         }
 
-        const lotteryNumberList = lotteryNumbers.map(number =>
-            <li className="roundNumberList" key={number}>{number}</li>
+        const lotteryNumberList = lotteryNumbers.map(number =>{
+            return(
+                <li style={{background: numberColor(number)}} className="roundNumberList" key={number}>{number}</li>
+            )
+        }
+            
         );
 
         return (
@@ -58,7 +63,7 @@ const LotteryRoundNumber = (props) =>{
                 <ul>
                     {lotteryNumberList}
                     +
-                    <li className="roundNumberList">{bonusNumber}</li>
+                    <li style={{background: numberColor(bonusNumber)}} className="roundNumberList">{bonusNumber}</li>
                 </ul>
             </div>
             

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { numberColor } from "../../localValue";
 import request from "../../request";
 import "../../styles/MyNumber.css"
 
@@ -28,7 +29,7 @@ const MyNumber = () =>{
 
         return(
             numbers.map(number =>
-                <li className="myNumberList" key={number}>{number}</li>
+                <li style={{background: numberColor(number)}} className="myNumberList" key={number}>{number}</li>
                 )
         )
     }

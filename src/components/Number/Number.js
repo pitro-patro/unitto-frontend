@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { MAX_EXCLUDE_NUMBER, MAX_INCLUDE_NUMBER } from "../../localValue";
+import { MAX_EXCLUDE_NUMBER, MAX_INCLUDE_NUMBER, numberColor } from "../../localValue";
 import request from "../../request";
 import NumberSelect from "./NumberSelect";
 import Timer from "./Timer";
@@ -91,7 +91,7 @@ const Number = () =>{
         }
 
         const confirmedUniqueNumberList = confirmedNumbers.map(number =>
-            <li className="numberList" key={number}>{number}</li>
+            <li style={{background: numberColor(number)}} className="numberList" key={number}>{number}</li>
         );
 
         return (
@@ -118,7 +118,7 @@ const Number = () =>{
         }
         
         const uniqueNumberList = numbers.map(number =>
-            <li className="numberList" key={number}>{number}</li>
+            <li style={{background: numberColor(number)}} className="numberList" key={number}>{number}</li>
         );
 
         return (
