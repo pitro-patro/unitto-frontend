@@ -28,7 +28,7 @@ const Timer = (props) =>{
     }, [minutes, seconds]);
 
     return(
-        <div class="timerContainer">
+        <div className="timerContainer">
             <h1>남은 시간</h1>
             <div>
                 <ul>

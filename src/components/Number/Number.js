@@ -1,11 +1,14 @@
-import React, { useState } from "react";
-import { MAX_EXCLUDE_NUMBER, MAX_INCLUDE_NUMBER, CURRENT_LOTTERY_ROUND } from "../../localValue";
+import React, { useEffect, useState } from "react";
+import { MAX_EXCLUDE_NUMBER, MAX_INCLUDE_NUMBER, numberColor } from "../../localValue";
 import request from "../../request";
 import NumberSelect from "./NumberSelect";
 import Timer from "./Timer";
+import LotteryRoundNumber from "./LotteryRoundNumber";
 import "../../styles/Number.css"
 
 const Number = () =>{
+
+    const [lotteryRound, setLotteryRound] = useState('');
 
     const [confirmedUniqueNumber, setConfirmedUniqueNumber] = useState([]);
 
@@ -16,9 +19,17 @@ const Number = () =>{
         "includeNumbers" : [],
         "excludeNumbers" : []  
     });
+
+    useEffect(() =>{
+        const getLotteryRound = async () =>{
+            const lotteryRoundData = await request.getLotteryRound();
+            setLotteryRound(lotteryRoundData);
+        }
+
+        getLotteryRound();
+    }, [])
     
     const getNumber = async () =>{
-        // TODO : 번호 include, exclude 기능 구현 필요
 
         let tempIncludeExcludeNumber = {
             "includeNumbers" : [],
@@ -80,7 +91,7 @@ const Number = () =>{
         }
 
         const confirmedUniqueNumberList = confirmedNumbers.map(number =>
-            <li className="numberList" key={number}>{number}</li>
+            <li style={{background: numberColor(number)}} className="numberList" key={number}>{number}</li>
         );
 
         return (
@@ -107,7 +118,7 @@ const Number = () =>{
         }
         
         const uniqueNumberList = numbers.map(number =>
-            <li className="numberList" key={number}>{number}</li>
+            <li style={{background: numberColor(number)}} className="numberList" key={number}>{number}</li>
         );
 
         return (
@@ -123,8 +134,11 @@ const Number = () =>{
 
     return(
         <div className="numberContainer">
+            <div>
+                <LotteryRoundNumber currentRound={lotteryRound}/>
+            </div>
             <h2>
-                {`${CURRENT_LOTTERY_ROUND}회차 로또 번호 생성기`}
+                {`${lotteryRound}회차 로또 번호 생성기`}
             </h2>
             <button className="defaultButton" onClick={getNumber}>
                 번호 발급
