@@ -4,7 +4,6 @@
 }
 
 .navigation_ul{
-    float: left;
     flex-direction: row;
     width: 100%;
     display: flex;
@@ -14,9 +13,21 @@
 }
 
 .navigation_li{
-    border: solid #bbbbbb;
-    background-color: #cdcdcd;
+    font-size: large;
     border-radius: 5px;
     margin: 10px;
     cursor: pointer;
+}
+
+.link_text{
+    font-weight: bold;
+    color: black;
+}
+
+.hover1:hover{
+    color : rgb(108, 185, 93);
+}
+
+.hover2:hover{
+    color : rgb(92, 155, 186);
 }
