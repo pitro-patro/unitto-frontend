@@ -5,6 +5,7 @@ import NumberSelect from "./NumberSelect";
 import Timer from "./Timer";
 import LotteryRoundNumber from "./LotteryRoundNumber";
 import "../../styles/Number.css"
+import "../../styles/NumberSelect.css"
 
 const Number = (props) =>{
 
@@ -86,8 +87,8 @@ const Number = (props) =>{
         );
 
         return (
-            <div>
-                <h1>등록된 번호</h1>
+            <div className="confirmedNumberContainer">
+                <h1>UNITTO 번호</h1>
                 <ul>{confirmedUniqueNumberList}</ul>
             </div>
             
@@ -133,8 +134,9 @@ const Number = (props) =>{
             </button>
             <div>
                 <NumberSelect includeExcludeNumber={includeExcludeNumber}/>
-                <ConfirmedNumberList confirmedNumbers={confirmedUniqueNumber}/>
+                
                 <NumberList numbers={uniqueNumber} expireTime={expireTime}/>
+                <ConfirmedNumberList confirmedNumbers={confirmedUniqueNumber}/>
             </div>
         </div>
     );
