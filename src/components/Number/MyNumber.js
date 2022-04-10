@@ -5,16 +5,38 @@ import "../../styles/MyNumber.css"
 
 const MyNumber = () =>{
 
+    const [userRoundList, setUserRoundList] = useState([]);
     const [userNumberData, setUserNumberData] = useState([]);
+
+    const [selectedNumberData, setSelectedNumberData] = useState([]);
 
     useEffect(() =>{
         const getUserData = async () =>{
-            const userNumberData = await request.getUserNumberData();
-            setUserNumberData(userNumberData);
+            const userNumberDataResponse = await request.getUserNumberData();
+            setUserNumberData(userNumberDataResponse);
+
+            // Get user's bought Rounds
+            let roundSet = new Set([]);
+            userNumberDataResponse.forEach(element => {
+                roundSet.add(element.lotteryRound)
+            });
+            let roundList = Array.from(roundSet);
+            setUserRoundList(roundList);
+
+            setNumberDataByRound(userNumberDataResponse, roundList[0]);
         }
 
         getUserData();
     }, []);
+
+    const setNumberDataByRound = (numberData, round) =>{
+        setSelectedNumberData(numberData.filter(data => data.lotteryRound === round));
+    }
+
+    const onRoundChange = (e) =>{
+        let round = Number(e.target.value);
+        setNumberDataByRound(userNumberData, round);
+    }
 
     const getStringDate = (date) =>{
         let sliceDate = date.split("T");
@@ -78,7 +100,12 @@ const MyNumber = () =>{
     return(
         <div>
             <div>
-                <DataList userNumberData={userNumberData}/>
+                <select className="lotteryRoundSelect" onChange={e => onRoundChange(e)}>
+                    {
+                        userRoundList.map(round=> <option key={round} value={round}>{round}</option>)
+                    }
+                </select>
+                <DataList userNumberData={selectedNumberData}/>
             </div>
         </div>
     )
