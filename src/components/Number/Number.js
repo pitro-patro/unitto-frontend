@@ -6,9 +6,9 @@ import Timer from "./Timer";
 import LotteryRoundNumber from "./LotteryRoundNumber";
 import "../../styles/Number.css"
 
-const Number = () =>{
+const Number = (props) =>{
 
-    const [lotteryRound, setLotteryRound] = useState('');
+    const [lotteryRound, setLotteryRound] = useState(props.currentRound);
 
     const [confirmedUniqueNumber, setConfirmedUniqueNumber] = useState([]);
 
@@ -19,15 +19,6 @@ const Number = () =>{
         "includeNumbers" : [],
         "excludeNumbers" : []  
     });
-
-    useEffect(() =>{
-        const getLotteryRound = async () =>{
-            const lotteryRoundData = await request.getLotteryRound();
-            setLotteryRound(lotteryRoundData);
-        }
-
-        getLotteryRound();
-    }, [])
     
     const getNumber = async () =>{
 
@@ -134,9 +125,6 @@ const Number = () =>{
 
     return(
         <div className="numberContainer">
-            <div>
-                <LotteryRoundNumber currentRound={lotteryRound}/>
-            </div>
             <h2>
                 {`${lotteryRound}회차 로또 번호 생성기`}
             </h2>

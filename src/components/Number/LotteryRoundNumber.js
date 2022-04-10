@@ -3,11 +3,11 @@ import { numberColor } from "../../localValue";
 import request from "../../request";
 import "../../styles/LotteryRoundNumber.css";
 
-const LotteryRoundNumber = (props) =>{
+const LotteryRoundNumber = () =>{
 
     const [lotteryRound, setLotteryRound] = useState('');
     const [lotteryNumber, setLotteryNumber] = useState([]);
-    const [bonusNumber, setBonusNumber] = useState('');
+    const [bonusNumber, setBonusNumber] = useState();
     const [roundDate, setRoundDate] = useState('');
 
     const [roundList, setRoundList] = useState([]);
