@@ -12,23 +12,6 @@ import MyNumber from './components/Number/MyNumber';
 
 function App() {
 
-  const [testStr, setTestStr] = useState('');
-
-  function callback(str){
-    setTestStr(str);
-  }
-
-  useEffect(
-    ()=>{
-      axios({
-        url: '/login/react-test',
-        method: 'GET'
-      }).then((res)=>{
-        callback(res.data);
-      })
-    }, []
-  );
-
   return (
     <div>
       <h1>UNITTO</h1>
@@ -44,10 +27,6 @@ function App() {
         <Route path="/my/number" element={<MyNumber/>}/>
         <Route path="/login/code/kakao" element={<LoginRedirect/>}/>
       </Routes>
-
-      <header className="App-header">
-        {testStr}
-      </header>
 
     </div>
     
