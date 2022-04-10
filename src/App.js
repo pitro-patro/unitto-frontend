@@ -2,53 +2,49 @@ import './App.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Route, Routes } from 'react-router-dom';
+import Title from './components/Title';
 import Home from './components/Home';
 import Number from './components/Number/Number';
 import Navigation from './components/Navigation';
 import LoginRedirect from './components/Login/LoginRedirect';
 
+import request from "./request";
+
 import LoginState from './components/Login/LoginState';
 import MyNumber from './components/Number/MyNumber';
+import LotteryRoundNumber from './components/Number/LotteryRoundNumber';
 
 function App() {
 
-  const [testStr, setTestStr] = useState('');
+  const [lotteryRound, setLotteryRound] = useState('');
 
-  function callback(str){
-    setTestStr(str);
-  }
+  useEffect(() =>{
+    const getLotteryRound = async () =>{
+        const lotteryRoundData = await request.getLotteryRound();
+        setLotteryRound(lotteryRoundData);
+    }
 
-  useEffect(
-    ()=>{
-      axios({
-        url: '/login/react-test',
-        method: 'GET'
-      }).then((res)=>{
-        callback(res.data);
-      })
-    }, []
-  );
+    getLotteryRound();
+  }, [])
 
   return (
     <div>
-      <h1>UNITTO</h1>
+      <Title/>
       <div className='headerContainer'>
         <LoginState/>
         <Navigation/>
       </div>
-      
+      <div>
+        <LotteryRoundNumber/>
+      </div>
 
       <Routes>
         <Route path="/" element={<Home/>}/>
-        <Route path="/number" element={<Number/>}/>
+        <Route path="/number" element={<Number currentRound={lotteryRound}/>}/>
         <Route path="/my/number" element={<MyNumber/>}/>
         <Route path="/login/code/kakao" element={<LoginRedirect/>}/>
       </Routes>
-
-      <header className="App-header">
-        {testStr}
-      </header>
-
+      
     </div>
     
   );

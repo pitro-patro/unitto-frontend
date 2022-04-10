@@ -5,10 +5,11 @@ import NumberSelect from "./NumberSelect";
 import Timer from "./Timer";
 import LotteryRoundNumber from "./LotteryRoundNumber";
 import "../../styles/Number.css"
+import "../../styles/NumberSelect.css"
 
-const Number = () =>{
+const Number = (props) =>{
 
-    const [lotteryRound, setLotteryRound] = useState('');
+    const [lotteryRound, setLotteryRound] = useState(props.currentRound);
 
     const [confirmedUniqueNumber, setConfirmedUniqueNumber] = useState([]);
 
@@ -19,15 +20,6 @@ const Number = () =>{
         "includeNumbers" : [],
         "excludeNumbers" : []  
     });
-
-    useEffect(() =>{
-        const getLotteryRound = async () =>{
-            const lotteryRoundData = await request.getLotteryRound();
-            setLotteryRound(lotteryRoundData);
-        }
-
-        getLotteryRound();
-    }, [])
     
     const getNumber = async () =>{
 
@@ -95,8 +87,8 @@ const Number = () =>{
         );
 
         return (
-            <div>
-                <h1>등록된 번호</h1>
+            <div className="confirmedNumberContainer">
+                <h1>UNITTO 번호</h1>
                 <ul>{confirmedUniqueNumberList}</ul>
             </div>
             
@@ -134,19 +126,17 @@ const Number = () =>{
 
     return(
         <div className="numberContainer">
-            <div>
-                <LotteryRoundNumber currentRound={lotteryRound}/>
-            </div>
             <h2>
-                {`${lotteryRound}회차 로또 번호 생성기`}
+                {`${lotteryRound}회차 미중복 로또 번호 추첨기`}
             </h2>
             <button className="defaultButton" onClick={getNumber}>
-                번호 발급
+                번호 추첨
             </button>
             <div>
                 <NumberSelect includeExcludeNumber={includeExcludeNumber}/>
-                <ConfirmedNumberList confirmedNumbers={confirmedUniqueNumber}/>
+                
                 <NumberList numbers={uniqueNumber} expireTime={expireTime}/>
+                <ConfirmedNumberList confirmedNumbers={confirmedUniqueNumber}/>
             </div>
         </div>
     );

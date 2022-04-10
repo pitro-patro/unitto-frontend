@@ -3,11 +3,11 @@ import { numberColor } from "../../localValue";
 import request from "../../request";
 import "../../styles/LotteryRoundNumber.css";
 
-const LotteryRoundNumber = (props) =>{
+const LotteryRoundNumber = () =>{
 
     const [lotteryRound, setLotteryRound] = useState('');
     const [lotteryNumber, setLotteryNumber] = useState([]);
-    const [bonusNumber, setBonusNumber] = useState('');
+    const [bonusNumber, setBonusNumber] = useState();
     const [roundDate, setRoundDate] = useState('');
 
     const [roundList, setRoundList] = useState([]);
@@ -79,7 +79,7 @@ const LotteryRoundNumber = (props) =>{
     return(
         <div className="lotteryRoundContainer">
             <div className="lotteryRoundSelectContainer">
-                <select className="lotteryRoundSelect" onChange={e => onRoundChange(e)}>
+                <select onChange={e => onRoundChange(e)}>
                     {
                         roundList.map(round=> <option key={round} value={round}>{round}</option>)
                     }

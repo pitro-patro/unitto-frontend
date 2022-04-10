@@ -1,3 +1,9 @@
+body{
+  text-align: center;
+  background-color: rgb(255, 248, 240);
+  font-family: Comic Sans MS;
+}
+
 .App {
   text-align: center;
 }
@@ -38,8 +44,8 @@
 }
 
 .headerContainer{
-  border: solid #c9c9c9;
-  background-color: #dbdbdb;
+  border: solid #ffefd8;
+  background-color: #ffe9d3;
 }
 
 .loginState{
@@ -48,6 +54,7 @@
 
 h1{
   font-weight: normal;
+  font-size: 50px;
   letter-spacing: .125rem;
   padding:0px;
   margin:0px;

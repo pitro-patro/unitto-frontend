@@ -5,16 +5,38 @@ import "../../styles/MyNumber.css"
 
 const MyNumber = () =>{
 
+    const [userRoundList, setUserRoundList] = useState([]);
     const [userNumberData, setUserNumberData] = useState([]);
+
+    const [selectedNumberData, setSelectedNumberData] = useState([]);
 
     useEffect(() =>{
         const getUserData = async () =>{
-            const userNumberData = await request.getUserNumberData();
-            setUserNumberData(userNumberData);
+            const userNumberDataResponse = await request.getUserNumberData();
+            setUserNumberData(userNumberDataResponse);
+
+            // Get user's bought Rounds
+            let roundSet = new Set([]);
+            userNumberDataResponse.forEach(element => {
+                roundSet.add(element.lotteryRound)
+            });
+            let roundList = Array.from(roundSet);
+            setUserRoundList(roundList);
+
+            setNumberDataByRound(userNumberDataResponse, roundList[0]);
         }
 
         getUserData();
     }, []);
+
+    const setNumberDataByRound = (numberData, round) =>{
+        setSelectedNumberData(numberData.filter(data => data.lotteryRound === round));
+    }
+
+    const onRoundChange = (e) =>{
+        let round = Number(e.target.value);
+        setNumberDataByRound(userNumberData, round);
+    }
 
     const getStringDate = (date) =>{
         let sliceDate = date.split("T");
@@ -49,16 +71,17 @@ const MyNumber = () =>{
 
         const dataListRow = numberData.map((data, index) =>
             <tr className="myNumberRow" key={index}>
-                <td>{data.lotteryRound}</td>
-                <td>{getLotteryNumberList(data.lotteryNumber)}</td>
-                <td>{getStringDate(data.confirmDate)}</td>
+                <td className="myNumberTd">{data.lotteryRound}</td>
+                <td className="myNumberTd">{getLotteryNumberList(data.lotteryNumber)}</td>
+                <td className="myNumberTd">{getStringDate(data.confirmDate)}</td>
             </tr>
         );
 
         return(
             <div>
+                
+                
                 <table className="myNumberTable">
-                    <caption><h2>내가 구매한 번호</h2></caption>
                     <thead>
                         <tr>
                             <th className="myNumberTh">회차</th>
@@ -78,7 +101,16 @@ const MyNumber = () =>{
     return(
         <div>
             <div>
-                <DataList userNumberData={userNumberData}/>
+                <div>
+                    <h2 className="myNumberTitle">내가 구매한</h2>
+                    <select className="lotteryRoundSelect myNumberTitle" onChange={e => onRoundChange(e)}>
+                        {
+                            userRoundList.map(round=> <option key={round} value={round}>{round}</option>)
+                        }
+                    </select>
+                    <h2 className="myNumberTitle">회차 번호</h2>
+                </div>
+                <DataList userNumberData={selectedNumberData}/>
             </div>
         </div>
     )
