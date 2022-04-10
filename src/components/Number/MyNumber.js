@@ -79,8 +79,17 @@ const MyNumber = () =>{
 
         return(
             <div>
+                <div>
+                    <h2 className="myNumberTitle">내가 구매한</h2>
+                    <select className="lotteryRoundSelect myNumberTitle" onChange={e => onRoundChange(e)}>
+                        {
+                            userRoundList.map(round=> <option key={round} value={round}>{round}</option>)
+                        }
+                    </select>
+                    <h2 className="myNumberTitle">회차 번호</h2>
+                </div>
+                
                 <table className="myNumberTable">
-                    <caption><h2>내가 구매한 번호</h2></caption>
                     <thead>
                         <tr>
                             <th className="myNumberTh">회차</th>
@@ -100,11 +109,6 @@ const MyNumber = () =>{
     return(
         <div>
             <div>
-                <select className="lotteryRoundSelect" onChange={e => onRoundChange(e)}>
-                    {
-                        userRoundList.map(round=> <option key={round} value={round}>{round}</option>)
-                    }
-                </select>
                 <DataList userNumberData={selectedNumberData}/>
             </div>
         </div>

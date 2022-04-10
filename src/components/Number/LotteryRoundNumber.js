@@ -79,7 +79,7 @@ const LotteryRoundNumber = () =>{
     return(
         <div className="lotteryRoundContainer">
             <div className="lotteryRoundSelectContainer">
-                <select className="lotteryRoundSelect" onChange={e => onRoundChange(e)}>
+                <select onChange={e => onRoundChange(e)}>
                     {
                         roundList.map(round=> <option key={round} value={round}>{round}</option>)
                     }
