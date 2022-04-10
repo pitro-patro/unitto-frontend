@@ -1,5 +1,4 @@
 .navigationContainer{
-    background-color: #dbdbdb;
     display: inline-block;
 }
 
@@ -25,9 +24,9 @@
 }
 
 .hover1:hover{
-    color : rgb(108, 185, 93);
+    color : rgb(115, 196, 99);
 }
 
 .hover2:hover{
-    color : rgb(92, 155, 186);
+    color : rgb(100, 166, 198);
 }

@@ -1,25 +1,26 @@
 .loginStateContainer{
-    float: right;
+    position: absolute;
+    right: 1px;
+    top: 1px;
 }
 
 .userdata_ul{
-    flex-direction: row;
-    display: flex;
-    margin: 0;
-    padding: 0px;
     list-style-type: none;
 }
 
 .userdata_li{
-    border: solid #bbbbbb;
-    border-width: 1px;
-    background-color: #cdcdcd;
-    border-radius: 5px;
-    margin: 5px;
-    padding: 1px;
-    cursor: pointer;
+    text-align: right;
 }
 
 .buttonContainer{
-    float: right;
+    background: transparent;
+    border-radius: 3px;
+    border: 1px solid gray;
+    color: gray;
+    padding: 0.15em 0.2em;
+    cursor: pointer;
+}
+
+.buttonContainer:hover{
+    background-color: rgb(212, 212, 212);
 }

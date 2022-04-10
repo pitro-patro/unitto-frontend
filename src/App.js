@@ -2,6 +2,7 @@ import './App.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Route, Routes } from 'react-router-dom';
+import Title from './components/Title';
 import Home from './components/Home';
 import Number from './components/Number/Number';
 import Navigation from './components/Navigation';
@@ -28,7 +29,7 @@ function App() {
 
   return (
     <div>
-      <h1>UNITTO</h1>
+      <Title/>
       <div className='headerContainer'>
         <LoginState/>
         <Navigation/>
