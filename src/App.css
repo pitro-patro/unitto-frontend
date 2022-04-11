@@ -1,3 +1,22 @@
+.background{
+  z-index: -1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+      to bottom,
+      rgba(255, 243, 222, 0.8),
+      rgba(255, 243, 222, 0.7) 50%,
+      rgba(255, 243, 222, 0.8)
+    ),
+    url(https://detroit.cbslocal.com/wp-content/uploads/sites/15909782/2020/01/shutterstock_747359791.d6c9ab213c264a7d8136c4c99f0c8c72-11.jpg?w=1024);
+  background-size: cover;
+  background-position: center;
+  filter: blur(5px);
+}
+
 body{
   text-align: center;
   background-color: rgb(255, 248, 240);

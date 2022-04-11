@@ -29,6 +29,9 @@ function App() {
 
   return (
     <div>
+
+      <div class="background"></div>
+
       <Title/>
       <div className='headerContainer'>
         <LoginState/>
