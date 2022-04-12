@@ -1,7 +1,11 @@
 import axios from "axios";
+import { BASE_URL } from "./localValue";
 import { KAKAO_AUTH_URL } from "./secretKey";
-// TODO : JWT 토큰 만료 처리 필요
-const axi = axios.create({baseURL: "http://localhost:3000/"});
+
+import { store } from "./index"
+import { flushAll } from "./modules/user";
+
+const axi = axios.create({baseURL: BASE_URL});
 
 export function getLocalStorageJwtToken(){
     const jwtToken = localStorage.getItem('jwtToken');
@@ -19,6 +23,7 @@ function jwtTokenExceptionHandler(error){
     var message = error.response.data.message;
     if(message === "Token is Expired" || message === "Token is Invalid" || message === "Token is NULL"){
         localStorage.removeItem('jwtToken');
+        store.dispatch(flushAll());
         alert("로그인 후 이용해 주세요.");
         document.location.href = KAKAO_AUTH_URL;
     }
