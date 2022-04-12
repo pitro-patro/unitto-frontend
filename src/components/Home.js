@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { flushAll, setJwtToken, setUserData } from "../modules/user";
+import { flushAll, storeJwtToken, storeUserData } from "../modules/user";
 
 const Home = () =>{
 
@@ -13,12 +13,12 @@ const Home = () =>{
     const dispatch = useDispatch();
 
     const onSetJwtToken = jwtToken => {
-        dispatch(setJwtToken(jwtToken))
+        dispatch(storeJwtToken(jwtToken))
         let userData = {
             email: "molly@naver.com",
             name: "MOLLY"
         };
-        dispatch(setUserData(userData))
+        dispatch(storeUserData(userData))
     };
     const flush = () => dispatch(flushAll());
 

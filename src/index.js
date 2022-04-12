@@ -10,8 +10,8 @@ import { createStore } from 'redux';
 import rootReducer from './modules';
 import { Provider } from 'react-redux';
 
-const store = createStore(rootReducer);
-console.log(store.getState());
+// TODO : redux-persist로 새로고침해도 state 유지 가능
+export const store = createStore(rootReducer);
 
 ReactDOM.render(
   <React.StrictMode>

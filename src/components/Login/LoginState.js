@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { KAKAO_AUTH_URL } from "../../../src/secretKey";
 import kakaoLoginImage from '../../img/kakao_login_medium_narrow.png'
+import { flushAll, storeJwtToken, storeUserData } from "../../modules/user";
 import request from "../../request";
 import "../../styles/LoginState.css"
 
 const LoginState = () => {
+
+    const dispatch = useDispatch();
+
     const [jwtToken, setJwtToken] = useState(
         request.getLocalStorageJwtToken()
     );
@@ -12,6 +17,7 @@ const LoginState = () => {
 
     const logoutHandler = () => {
         localStorage.removeItem('jwtToken');
+        dispatch(flushAll());
         document.location.href= "/";
     }
     
@@ -23,8 +29,10 @@ const LoginState = () => {
         const getUserData = async () => {
             const userData = await request.getUserData();
             setUserData(userData);
+            dispatch(storeUserData(userData));
         };
         getUserData(jwtToken);
+        dispatch(storeJwtToken(jwtToken));
     }, []);
 
     if(!jwtToken){

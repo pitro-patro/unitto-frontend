@@ -2,8 +2,8 @@ const SET_JWT_TOKEN = 'user/SET_JWT_TOKEN';
 const SET_USER_DATA = 'user/SET_USER_DATA';
 const FLUSH_ALL = 'user/FLUSH_ALL';
 
-export const setJwtToken = jwtToken => ({type: SET_JWT_TOKEN, jwtToken});
-export const setUserData = userData => ({type: SET_USER_DATA, userData});
+export const storeJwtToken = jwtToken => ({type: SET_JWT_TOKEN, jwtToken});
+export const storeUserData = userData => ({type: SET_USER_DATA, userData});
 export const flushAll = () => ({type: FLUSH_ALL});
 
 const initialState = {
