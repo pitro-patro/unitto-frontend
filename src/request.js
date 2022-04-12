@@ -1,10 +1,11 @@
 import axios from "axios";
+import { BASE_URL } from "./localValue";
 import { KAKAO_AUTH_URL } from "./secretKey";
 
 import { store } from "./index"
 import { flushAll } from "./modules/user";
 
-const axi = axios.create({baseURL: "http://localhost:3000/"});
+const axi = axios.create({baseURL: BASE_URL});
 
 export function getLocalStorageJwtToken(){
     const jwtToken = localStorage.getItem('jwtToken');
