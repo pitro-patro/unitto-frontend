@@ -1,6 +1,6 @@
 import axios from "axios";
 import { KAKAO_AUTH_URL } from "./secretKey";
-// TODO : JWT 토큰 만료 처리 필요
+
 const axi = axios.create({baseURL: "http://localhost:3000/"});
 
 export function getLocalStorageJwtToken(){
@@ -18,6 +18,7 @@ function jwtTokenHeader(jwtToken){
 function jwtTokenExceptionHandler(error){
     var message = error.response.data.message;
     if(message === "Token is Expired" || message === "Token is Invalid" || message === "Token is NULL"){
+        // TODO : REDUX Store 비우기
         localStorage.removeItem('jwtToken');
         alert("로그인 후 이용해 주세요.");
         document.location.href = KAKAO_AUTH_URL;

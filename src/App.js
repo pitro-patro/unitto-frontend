@@ -1,6 +1,5 @@
 import './App.css';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import { Route, Routes } from 'react-router-dom';
 import Title from './components/Title';
 import Home from './components/Home';
@@ -30,7 +29,7 @@ function App() {
   return (
     <div>
 
-      <div class="background"></div>
+      <div className="background"></div>
 
       <Title/>
       <div className='headerContainer'>
